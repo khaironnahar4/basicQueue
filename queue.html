@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Queue</title>
+    <script>
+        let array = [];
+        let arraySize = array.length;
+        let max = 3;
+        //enqueue
+        function enqueue() {
+            let item = document.getElementById("value").value;
+            if (arraySize<max) {
+                array[arraySize] = item;
+                arraySize++;
+            }else{
+                alert("Queue is Full.")
+            }
+            display(array);
+            document.getElementById("value").value="";
+        }
+        //dequeue
+        function dequeue() {
+            if(!isEmpty()){
+                for(let i=0; i<array.length-1; i++){
+                    array[i]=array[i+1];
+                }
+                arraySize--;
+                array.length=arraySize;
+            }else{
+                alert("Array is empty.");
+            }
+            display(array);
+        }
+        //front
+        function front() {
+            if(!isEmpty()){
+                display(array[0]);
+            }else{
+                alert("Array is empty");
+            }
+        }
+        //rear
+        function rear() {
+            if(!isEmpty()){
+                display(array[arraySize-1]);
+            }else{
+                alert("Array is empty");
+            }
+        }
+        //isempty
+        function isEmpty() {
+            if (arraySize <= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //display
+        function display(value){
+            let pera=document.getElementById("pera");
+            pera.innerHTML="";
+            let text=document.createTextNode(value);
+            pera.appendChild(text);
+            //console.log(`Our queue is ${array}`);
+        }
+    </script>
+</head>
+
+<body>
+ <div style="margin: auto; width: 300px;">
+        <h3>Stack Data Structure</h3>
+        <input type="text" id="value" placeholder="Element" style="margin-bottom: 20px;">
+        <button onclick="enqueue()" style="display: block; margin-bottom: 20px;">Enqueue</button>       
+        <button onclick="dequeue()" style="display: block;margin-bottom: 20px;">Dequeue</button>
+        <button onclick="front()" style="display: block;margin-bottom: 20px;">Find Front Element</button>
+        <button onclick="rear()" style="display: block;margin-bottom: 20px;">Find Rear Element</button>
+        <p id="pera"></p>
+    </div>
+</body>
+
+</html>
